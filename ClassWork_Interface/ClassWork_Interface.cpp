@@ -1,6 +1,7 @@
 
 #include <iostream>
 
+/*
 class Bird
 {
 private:
@@ -119,9 +120,84 @@ public:
         std::cout << "...\n";
     }
 };
+*/
+
+class Employer
+{
+private:
+    bool isAlive;
+public:
+    Employer()
+    {
+        isAlive = false;
+    }
+    Employer(bool alive)
+    {
+        isAlive = alive;
+    }
+    virtual void print() = 0;
+    virtual ~Employer() {}
+};
+class President : Employer
+{
+private:
+    bool smart;
+public:
+    President() : Employer()
+    {
+        smart = true;
+    }
+    President(bool _alive, bool _smart) : Employer(_alive)
+    {
+        smart = _smart;
+    }
+    void print() override
+    {
+        std::cout << "Is smart: " << smart << '\n';
+    }
+};
+class Manager : Employer
+{
+private:
+    bool Good;
+public:
+    Manager() : Employer()
+    {
+        Good = true;
+    }
+    Manager(bool _alive, bool _Good) : Employer(_alive)
+    {
+        Good = _Good;
+    }
+
+    void print() override
+    {
+        std::cout << "Is good: " << Good << '\n';
+    }
+};
+class Worker : Employer
+{
+private:
+    int pay;
+public:
+    Worker() : Employer()
+    {
+        pay = 100000;
+    }
+    Worker(bool _alive, int _pay) : Employer(_alive)
+    {
+        pay = _pay;
+    }
+
+    void print()
+    {
+        std::cout << "Pay: " << pay << '\n';
+    }
+};
 
 int main()
 {
+    /*
     Parrot tester(true);
     tester.eat();
     tester.fly();
@@ -132,4 +208,11 @@ int main()
     who.run();
     who.swim();
     who.voice();
+    */
+    President Who(true, true);
+    Manager is(true, true);
+    Worker who(true, 1234567);
+    Who.print();
+    is.print();
+    who.print();
 }
